@@ -1,0 +1,11 @@
+
+## Mac OSX ##
+.vscode
+
+## NPM ##
+node_modules/
+
+## Compiled files ##
+bundle.js
+
+package-lock.json
