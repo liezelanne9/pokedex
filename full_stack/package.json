@@ -5,8 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "start": "nodemon server/index.js",
-    "build": "webpack -d --watch",
-    "seed": "node database/insertAllPokemon.js"
+    "build": "webpack -d --watch"
   },
   "author": "Liezel Manalo",
   "private": true,

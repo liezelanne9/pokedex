@@ -1,6 +1,11 @@
+const pool = require('../database/models');
+
 const controller = {
   get: (req, res) => {
-    res.status(200).send('Hello from GET');
+    console.log('get')
+    pool.query('SELECT * FROM pokemon;')
+      .then(data => res.status(200).send(data.rows))
+      .catch(err => res.status(404).send(err))
   },
   post: (req, res) => {
     res.status(201).send('Hello from POST');
