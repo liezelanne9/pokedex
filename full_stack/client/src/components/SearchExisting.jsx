@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SearchPokemon from './SearchPokemon';
-import SearchList from './SearchList';
+import SearchList from './SearchExisting-List';
 
 class RegisterExisting extends Component {
   render() {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ListItem from './ListItem';
+import ListItem from './SearchExisting-ListItem';
 
 class SearchList extends Component {
   render() {

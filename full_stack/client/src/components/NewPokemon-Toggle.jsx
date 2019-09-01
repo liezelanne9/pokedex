@@ -1,6 +1,6 @@
 import React from 'react'
 
-const RegisterButton = (props) => {
+const ToggleButton = (props) => {
   const { handleClick } = props;
   return (
     <div className="box has-text-centered">
@@ -18,4 +18,4 @@ const RegisterButton = (props) => {
   )
 }
 
-export default RegisterButton;
+export default ToggleButton;

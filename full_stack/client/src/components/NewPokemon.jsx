@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import RegisterButton from './RegisterButton';
-import Form from './Form';
+import ToggleButton from './NewPokemon-Toggle';
+import Form from './NewPokemon-Form';
 
 class NewPokemon extends Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class NewPokemon extends Component {
   render() {
     let visible = this.state.clicked ? 
     <Form handleClick={this.handleClick}/> : 
-    <RegisterButton handleClick={this.handleClick}
+    <ToggleButton handleClick={this.handleClick}
     />;
     return (
       <div>

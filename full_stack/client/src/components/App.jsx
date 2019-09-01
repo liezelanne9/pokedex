@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CurrentPokemon from './CurrentPokemon';
-import RegisterExisting from './RegisterExisting';
+import SearchExisting from './SearchExisting';
 import NewPokemon from './NewPokemon';
 import axios from 'axios';
 
@@ -100,7 +100,7 @@ class App extends Component {
             <NewPokemon />
           </article>
           <article className="tile is-child notification is-danger">
-            <RegisterExisting />
+            <SearchExisting />
           </article>
         </div>
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import ImageDisplay from './ImageDisplay';
-import PokemonInfo from './PokemonInfo';
+import PokemonImage from './CurrentPokemon-Image';
+import PokemonInfo from './CurrentPokemon-Info';
 
 const CurrentPokemon = (props) => {
   const { currentPokemon, changeCurrentPokemon, unregisterPokemon } = props;
@@ -9,7 +9,7 @@ const CurrentPokemon = (props) => {
   return (
     <div>
       <div>
-        <ImageDisplay id={id} imageurl={imageurl} />
+        <PokemonImage id={id} imageurl={imageurl} />
       </div>
       <div>
         <PokemonInfo 
