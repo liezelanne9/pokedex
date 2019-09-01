@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 
 class ImageDisplay extends Component {
   render() {
+    const { id, imageurl } = this.props;
     return (
       <div className="card">
         <div className="card-image">
           <figure className="image is-fullwidth">
-            <img src="http://vignette2.wikia.nocookie.net/nintendo/images/7/77/Pikachu.png/revision/latest?cb=20141002082401&path-prefix=en"
+            <img src={imageurl}
               alt="Placeholder image"
               style={{ width: 275, height: 'auto', marginLeft: 'auto', marginRight: 'auto' }}
             />
