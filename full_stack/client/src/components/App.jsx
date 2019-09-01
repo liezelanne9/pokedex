@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import CurrentPokemon from './CurrentPokemon';
 import RegisterExisting from './RegisterExisting';
 import NewPokemon from './NewPokemon';
-import PrevNext from './PrevNext';
 import axios from 'axios';
 
 class App extends Component {
@@ -88,19 +87,20 @@ class App extends Component {
 
         <div className="tile is-parent is-vertical">
           <article className="tile is-child notification is-warning">
-            <CurrentPokemon currentPokemon={currentPokemon} unregisterPokemon={this.unregisterPokemon}/>
+            <CurrentPokemon
+              currentPokemon={currentPokemon}
+              changeCurrentPokemon={this.changeCurrentPokemon}
+              unregisterPokemon={this.unregisterPokemon}
+            />
           </article>
         </div>
 
         <div className="tile is-parent is-vertical">
           <article className="tile is-child notification is-danger">
-            <RegisterExisting />
-          </article>
-          <article className="tile is-child notification is-danger">
             <NewPokemon />
           </article>
-          <article className="tile is-child notification is-info">
-            <PrevNext changeCurrentPokemon={this.changeCurrentPokemon} />
+          <article className="tile is-child notification is-danger">
+            <RegisterExisting />
           </article>
         </div>
 

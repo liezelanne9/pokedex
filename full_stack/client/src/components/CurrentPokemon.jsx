@@ -3,7 +3,7 @@ import ImageDisplay from './ImageDisplay';
 import PokemonInfo from './PokemonInfo';
 
 const CurrentPokemon = (props) => {
-  const { currentPokemon, unregisterPokemon } = props;
+  const { currentPokemon, changeCurrentPokemon, unregisterPokemon } = props;
   const { id, name, type1, type2, imageurl } = currentPokemon;
 
   return (
@@ -14,6 +14,7 @@ const CurrentPokemon = (props) => {
       <div>
         <PokemonInfo 
         id={id} name={name} type1={type1} type2={type2} 
+        changeCurrentPokemon={changeCurrentPokemon}
         unregisterPokemon={unregisterPokemon}
         />
       </div>

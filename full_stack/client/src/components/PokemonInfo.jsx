@@ -1,11 +1,12 @@
 import React from 'react';
+import PrevNext from './PrevNext';
 import typeColors from '../pokemonTypes';
 
 const PokemonInfo = (props) => {
-  const { id, name, type1, type2, unregisterPokemon } = props;
+  const { id, name, type1, type2, changeCurrentPokemon, unregisterPokemon } = props;
   const type1Class = typeColors[type1];
   const type2Class = type2.length > 1 ? typeColors[type2] : "";
-  
+
   return (
     <div className="card">
       <div className="card-content">
@@ -59,8 +60,11 @@ const PokemonInfo = (props) => {
         <footer className="card-footer">
           <a href="#" className="card-footer-item" onClick={(e, id) => unregisterPokemon(e, props.id)}>
             Un-Register
-          </a>
+            </a>
         </footer>
+        <div>
+          <PrevNext changeCurrentPokemon={changeCurrentPokemon} />
+        </div>
       </div>
     </div>
 

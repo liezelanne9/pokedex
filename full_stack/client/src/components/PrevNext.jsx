@@ -9,7 +9,7 @@ const PrevNext = (props) => {
         </a>
       </div>
       <div className="column">
-        <a className="button is-large" onClick={(direction) => props.changeCurrentPokemon(1)}>
+        <a className="button is-large is-pulled-right" onClick={(direction) => props.changeCurrentPokemon(1)}>
           <i className="fas fa-forward"></i>
         </a>
       </div>
