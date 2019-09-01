@@ -4,7 +4,6 @@ import Register from './Register';
 import NewPokemon from './NewPokemon';
 import PrevNext from './PrevNext';
 import axios from 'axios';
-// import pokeLoading from '../../dist/loading-pokeball.gif';
 
 class App extends Component {
   constructor(props) {
@@ -27,16 +26,15 @@ class App extends Component {
       .catch(err => console.log(err))
     window.addEventListener('keydown', (e) => {
       if (e.key === "ArrowLeft") {
-        this.changeCurrentPokemon(e, -1);
+        this.changeCurrentPokemon(-1);
       }
       if (e.key === "ArrowRight") {
-        this.changeCurrentPokemon(e, 1);
+        this.changeCurrentPokemon(1);
       }
     });
   }
 
-  changeCurrentPokemon(e, direction) {
-    // e.preventDefault();
+  changeCurrentPokemon(direction) {
     let { currentIndex } = this.state;
     if (direction === -1 && currentIndex === 0) {
       currentIndex = this.state.pokemonList.length - 1;
