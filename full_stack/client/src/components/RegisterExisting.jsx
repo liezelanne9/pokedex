@@ -9,7 +9,7 @@ class RegisterExisting extends Component {
         <div className="box">
           <div className="columns">
             <div className="column has-text-centered">
-              <h2>Register New Seen:</h2>
+              <h2>Register Existing:</h2>
             </div>
             <div className="column">
               <SearchPokemon />
