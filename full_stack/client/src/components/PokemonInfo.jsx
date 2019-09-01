@@ -10,7 +10,7 @@ const typeColors = {
   "Poison": "tag is-dark",
   "Electric": "tag is-warning",
   "Ground": "tag is-warning",
-  "Psychic": "tag is-white",
+  "Psychic": "tag is-black",
   "Rock": "tag is-warning",
   "Ice": "tag is-info",
   "Bug": "tag is-success",

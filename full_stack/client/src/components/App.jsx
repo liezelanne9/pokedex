@@ -13,6 +13,7 @@ class App extends Component {
       pokemonList: [],
       currentIndex: 0
     }
+    this.changeCurrentPokemon = this.changeCurrentPokemon.bind(this);
   }
 
   componentDidMount() {
@@ -24,6 +25,29 @@ class App extends Component {
         })
       })
       .catch(err => console.log(err))
+    window.addEventListener('keydown', (e) => {
+      if (e.key === "ArrowLeft") {
+        this.changeCurrentPokemon(e, -1);
+      }
+      if (e.key === "ArrowRight") {
+        this.changeCurrentPokemon(e, 1);
+      }
+    });
+  }
+
+  changeCurrentPokemon(e, direction) {
+    // e.preventDefault();
+    let { currentIndex } = this.state;
+    if (direction === -1 && currentIndex === 0) {
+      currentIndex = this.state.pokemonList.length - 1;
+    } else if (direction === 1 && currentIndex === this.state.pokemonList.length - 1) {
+      currentIndex = 0;
+    } else {
+      currentIndex = this.state.currentIndex + direction;
+    }
+    this.setState({
+      currentIndex
+    })
   }
 
   render() {
@@ -54,7 +78,7 @@ class App extends Component {
             <NewPokemon />
           </article>
           <article className="tile is-child notification is-info">
-            <PrevNext />
+            <PrevNext changeCurrentPokemon={this.changeCurrentPokemon}/>
           </article>
         </div>
 
