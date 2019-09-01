@@ -111,7 +111,7 @@ class App extends Component {
       <div className="tile is-ancestor">
 
         <div className="tile is-parent is-vertical">
-          <article className="tile is-child notification is-danger">
+          <article className="tile is-child notification is-info">
             <CurrentPokemon
               currentPokemon={currentPokemon}
               changeCurrentPokemon={this.changeCurrentPokemon}
