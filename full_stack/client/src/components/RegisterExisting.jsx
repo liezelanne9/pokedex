@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SearchPokemon from './SearchPokemon';
 import SearchList from './SearchList';
 
-class Register extends Component {
+class RegisterExisting extends Component {
   render() {
     return (
       <div>
@@ -24,4 +24,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default RegisterExisting;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CurrentPokemon from './CurrentPokemon';
-import Register from './Register';
+import RegisterExisting from './RegisterExisting';
 import NewPokemon from './NewPokemon';
 import PrevNext from './PrevNext';
 import axios from 'axios';
@@ -68,6 +68,10 @@ class App extends Component {
     }
   }
 
+  registerNewPokemon(pokemonObject) {
+
+  }
+
   render() {
     const placeholder = {
       "id": '',
@@ -90,7 +94,7 @@ class App extends Component {
 
         <div className="tile is-parent is-vertical">
           <article className="tile is-child notification is-danger">
-            <Register />
+            <RegisterExisting />
           </article>
           <article className="tile is-child notification is-danger">
             <NewPokemon />
