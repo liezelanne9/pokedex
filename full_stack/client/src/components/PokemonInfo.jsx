@@ -1,5 +1,6 @@
 import React from 'react';
 import PrevNext from './PrevNext';
+import StatsTable from './StatsTable';
 import typeColors from '../pokemonTypes';
 
 const PokemonInfo = (props) => {
@@ -29,40 +30,13 @@ const PokemonInfo = (props) => {
             </div>
           </div>
         </div>
-        <div className="content">
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Stats</th>
-                <th className="is-italic">Base</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>Attack</th>
-                <td>10</td>
-              </tr>
-              <tr>
-                <th>Defense</th>
-                <td>10</td>
-              </tr>
-              <tr>
-                <th>Sp. Attack</th>
-                <td>10</td>
-              </tr>
-              <tr>
-                <th>Sp. Defense</th>
-                <td>10</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <StatsTable />
         <footer className="card-footer">
-          <a href="#" className="card-footer-item" onClick={(e, id) => unregisterPokemon(e, props.id)}>
-            Un-Register
-            </a>
+          <a className="card-footer-item button is-info" onClick={(e, id) => unregisterPokemon(e, props.id)}>
+            Un-Register Pokémon
+          </a>
         </footer>
-        <div>
+        <div className="card-footer-item">
           <PrevNext changeCurrentPokemon={changeCurrentPokemon} />
         </div>
       </div>
