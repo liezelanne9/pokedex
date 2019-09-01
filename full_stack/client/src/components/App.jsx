@@ -12,18 +12,13 @@ class App extends Component {
       pokemonList: [],
       currentIndex: 0
     }
+    this.fetchPokemonList = this.fetchPokemonList.bind(this);
     this.changeCurrentPokemon = this.changeCurrentPokemon.bind(this);
+    this.unregisterPokemon = this.unregisterPokemon.bind(this);
   }
 
   componentDidMount() {
-    axios
-      .get('/api')
-      .then(pokemon => {
-        this.setState({
-          pokemonList: pokemon.data
-        })
-      })
-      .catch(err => console.log(err))
+    this.fetchPokemonList();
     window.addEventListener('keydown', (e) => {
       if (e.key === "ArrowLeft") {
         this.changeCurrentPokemon(-1);
@@ -32,6 +27,17 @@ class App extends Component {
         this.changeCurrentPokemon(1);
       }
     });
+  }
+
+  fetchPokemonList() {
+    axios
+      .get('/api')
+      .then(pokemon => {
+        this.setState({
+          pokemonList: pokemon.data
+        })
+      })
+      .catch(err => console.log(err))
   }
 
   changeCurrentPokemon(direction) {
@@ -46,6 +52,20 @@ class App extends Component {
     this.setState({
       currentIndex
     })
+  }
+
+  unregisterPokemon(e, id) {
+    e.preventDefault();
+    let confirmed = confirm("Are you sure you want to un-register this Pokemon?");
+    if (confirmed) {
+      axios
+        .delete(`/api/${id}`)
+        .then(() => {
+          this.changeCurrentPokemon(-1);
+          this.fetchPokemonList();
+        })
+        .catch(err => console.log(err))
+    }
   }
 
   render() {
@@ -64,7 +84,7 @@ class App extends Component {
 
         <div className="tile is-parent is-vertical">
           <article className="tile is-child notification is-warning">
-            <CurrentPokemon currentPokemon={currentPokemon} />
+            <CurrentPokemon currentPokemon={currentPokemon} unregisterPokemon={this.unregisterPokemon}/>
           </article>
         </div>
 
@@ -76,7 +96,7 @@ class App extends Component {
             <NewPokemon />
           </article>
           <article className="tile is-child notification is-info">
-            <PrevNext changeCurrentPokemon={this.changeCurrentPokemon}/>
+            <PrevNext changeCurrentPokemon={this.changeCurrentPokemon} />
           </article>
         </div>
 

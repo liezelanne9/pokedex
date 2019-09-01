@@ -1,8 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+// import poke404 from '../../dist/Poke404.png';
 
 class ImageDisplay extends Component {
   render() {
-    const { id, imageurl } = this.props;
+    let { id, imageurl } = this.props;
+    imageurl = imageurl.length ? imageurl : "https://cdn.bulbagarden.net/upload/thumb/a/a1/Substitute_artwork.png/200px-Substitute_artwork.png";
     return (
       <div className="card">
         <div className="card-image">

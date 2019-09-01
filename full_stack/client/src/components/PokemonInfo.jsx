@@ -23,9 +23,9 @@ const typeColors = {
 }
 
 const PokemonInfo = (props) => {
-  const { id, name, type1, type2 } = props;
+  const { id, name, type1, type2, unregisterPokemon } = props;
   const type1Class = typeColors[type1];
-  const type2Class = type2 ? typeColors[type2] : "";
+  const type2Class = type2.length > 1 ? typeColors[type2] : "";
   
   return (
     <div className="card">
@@ -78,7 +78,9 @@ const PokemonInfo = (props) => {
           </table>
         </div>
         <footer className="card-footer">
-          <a href="#" className="card-footer-item">Un-Register</a>
+          <a href="#" className="card-footer-item" onClick={(e, id) => unregisterPokemon(e, props.id)}>
+            Un-Register
+          </a>
         </footer>
       </div>
     </div>

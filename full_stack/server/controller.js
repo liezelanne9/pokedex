@@ -11,7 +11,7 @@ const controller = {
     let { id, name, type1, type2, imageurl } = req.body;
     const insertText = `INSERT INTO 
     pokemon (id, name, type1, type2, imageurl) 
-    VALUES ('${id}', '${name}', '${type1}', '${type2 ? type2 : "''"}', '${imageurl ? imageurl : "''"}'
+    VALUES ('${id}', '${name}', '${type1}', '${type2 ? type2 : ""}', '${imageurl ? imageurl : ""}'
     );`
 
     pool.query(insertText)
@@ -36,8 +36,8 @@ const controller_params = {
       .catch(err => res.status(404).send(err))
   },
   deleteById: (req, res) => {
-    let { id } = req.params;
-    pool.query(`DELETE FROM pokemon WHERE id = ${id}`)
+    let { pokemon } = req.params;
+    pool.query(`DELETE FROM pokemon WHERE id = ${pokemon}`)
       .then(data => res.status(202).send(data))
       .catch(err => res.status(404).send(err))
   }
