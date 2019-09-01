@@ -9,6 +9,7 @@ const controller = {
   
   post: (req, res) => {
     let { id, name, type1, type2, imageurl } = req.body;
+    console.log(id, name, type1, type2, imageurl)
     const insertText = `INSERT INTO 
     pokemon (id, name, type1, type2, imageurl) 
     VALUES ('${id}', '${name}', '${type1}', '${type2 ? type2 : ""}', '${imageurl ? imageurl : ""}'
@@ -37,7 +38,9 @@ const controller_params = {
   },
   deleteById: (req, res) => {
     let { pokemon } = req.params;
-    pool.query(`DELETE FROM pokemon WHERE id = ${pokemon}`)
+    const deleteText = `DELETE FROM pokemon WHERE id = '${pokemon}';`;
+    console.log(deleteText)
+    pool.query(deleteText)
       .then(data => res.status(202).send(data))
       .catch(err => res.status(404).send(err))
   }

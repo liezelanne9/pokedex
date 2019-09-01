@@ -19,8 +19,9 @@ class NewPokemon extends Component {
   }
 
   render() {
+    const { registerNewPokemon } = this.props;
     let visible = this.state.clicked ? 
-    <Form handleClick={this.handleClick}/> : 
+    <Form handleClick={this.handleClick} registerNewPokemon={registerNewPokemon}/> : 
     <ToggleButton handleClick={this.handleClick}
     />;
     return (

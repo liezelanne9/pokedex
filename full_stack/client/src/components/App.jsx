@@ -14,6 +14,7 @@ class App extends Component {
     this.fetchPokemonList = this.fetchPokemonList.bind(this);
     this.changeCurrentPokemon = this.changeCurrentPokemon.bind(this);
     this.unregisterPokemon = this.unregisterPokemon.bind(this);
+    this.registerNewPokemon = this.registerNewPokemon.bind(this);
   }
 
   componentDidMount() {
@@ -28,12 +29,22 @@ class App extends Component {
     });
   }
 
-  fetchPokemonList() {
+  fetchPokemonList(init = true) {
     axios
       .get('/api')
       .then(pokemon => {
         this.setState({
           pokemonList: pokemon.data
+        }, () => {
+          if (init) {
+            this.setState({
+              currentIndex: 0
+            })
+          } else {
+            this.setState({
+              currentIndex: this.state.pokemonList.length - 1
+            })
+          }
         })
       })
       .catch(err => console.log(err))
@@ -60,15 +71,29 @@ class App extends Component {
       axios
         .delete(`/api/${id}`)
         .then(() => {
-          this.changeCurrentPokemon(-1);
-          this.fetchPokemonList();
+          this.fetchPokemonList(false);
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err.response))
     }
   }
 
   registerNewPokemon(pokemonObject) {
-
+    const { id } = pokemonObject;
+    axios
+      .get(`/api/${id}`)
+      .then((pokemon) => {
+        if (pokemon.data.length) {
+          alert('Pokemon Number already exists. Please enter a different Number (up to 4 digits).');
+          return;
+        } else {
+          axios
+            .post('/api', pokemonObject)
+            .then(() => {
+              this.fetchPokemonList(false)
+            })
+            .catch(err => console.log(err.response))
+        }
+      })
   }
 
   render() {
@@ -86,7 +111,7 @@ class App extends Component {
       <div className="tile is-ancestor">
 
         <div className="tile is-parent is-vertical">
-          <article className="tile is-child notification is-info">
+          <article className="tile is-child notification is-danger">
             <CurrentPokemon
               currentPokemon={currentPokemon}
               changeCurrentPokemon={this.changeCurrentPokemon}
@@ -96,10 +121,10 @@ class App extends Component {
         </div>
 
         <div className="tile is-parent is-vertical">
-          <article className="tile is-child notification is-danger">
-            <NewPokemon />
+          <article className="tile is-child notification is-info">
+            <NewPokemon registerNewPokemon={this.registerNewPokemon} />
           </article>
-          <article className="tile is-child notification is-danger">
+          <article className="tile is-child notification is-info">
             <SearchExisting />
           </article>
         </div>
