@@ -4,9 +4,10 @@ import StatsTable from './StatsTable';
 import typeColors from '../pokemonTypes';
 
 const PokemonInfo = (props) => {
-  const { id, name, type1, type2, changeCurrentPokemon, unregisterPokemon } = props;
-  const type1Class = typeColors[type1];
-  const type2Class = type2.length > 1 ? typeColors[type2] : "";
+  let { id, name, type1, type2, imageurl, sprite, stats, changeCurrentPokemon, unregisterPokemon } = props;
+  sprite = sprite ? sprite : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png";
+  let type1Class = typeColors[type1];
+  let type2Class = type2.length > 1 ? typeColors[type2] : "";
 
   return (
     <div className="card">
@@ -14,7 +15,7 @@ const PokemonInfo = (props) => {
         <div className="media">
           <div className="media-left">
             <figure className="image is-48x48">
-              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Placeholder image" />
+              <img src={sprite} alt="Placeholder image" />
             </figure>
           </div>
           <div className="media-content">
@@ -30,7 +31,7 @@ const PokemonInfo = (props) => {
             </div>
           </div>
         </div>
-        <StatsTable />
+        <StatsTable stats={stats} />
         <footer className="card-footer">
           <a className="card-footer-item button is-primary" onClick={(e, id) => unregisterPokemon(e, props.id)}>
             Un-Register Pokémon

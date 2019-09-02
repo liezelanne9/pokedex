@@ -89,6 +89,7 @@ class App extends Component {
           axios
             .post('/api', pokemonObject)
             .then(() => {
+              console.log('posted')
               this.fetchPokemonList(false)
             })
             .catch(err => console.log(err.response))
@@ -102,7 +103,9 @@ class App extends Component {
       "name": "Please wait...",
       "type1": "???",
       "type2": "",
-      "imageurl": "https://cdn140.picsart.com/259325004017202.gif"
+      "imageurl": "https://cdn140.picsart.com/259325004017202.gif",
+      "sprite": "",
+      "stats": ""
     };
     const { pokemonList, currentIndex } = this.state;
     const currentPokemon = pokemonList[currentIndex] ? pokemonList[currentIndex] : placeholder;
@@ -125,7 +128,7 @@ class App extends Component {
             <NewPokemon registerNewPokemon={this.registerNewPokemon} />
           </article>
           <article className="tile is-child notification is-info">
-            <SearchExisting />
+            <SearchExisting pokemonList={pokemonList} fetchPokemonList={this.fetchPokemonList}/>
           </article>
         </div>
 

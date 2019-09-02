@@ -12,7 +12,7 @@ pool.on('connect', () => {
 
 /* Seed with Pokemon data if table exists and is empty */
 const insertAllPokemon = () => {
-  const seedFile = path.resolve(__dirname, '../pokemon_data/pokemon.csv');
+  const seedFile = path.resolve(__dirname, '../pokemon_data/data-from-api.csv');
   pool.query(
     `COPY pokemon FROM '${seedFile}' DELIMITER ',' CSV HEADER;`
   )
@@ -29,10 +29,12 @@ const createTable = () => {
     `CREATE TABLE IF NOT EXISTS
   pokemon(
     id VARCHAR(4) PRIMARY KEY,
-    name VARCHAR(20) NOT NULL,
-    type1 VARCHAR(10) NOT NULL,
-    type2 VARCHAR(10),
-    imageurl VARCHAR(200)
+    name TEXT NOT NULL,
+    type1 TEXT NOT NULL,
+    type2 TEXT,
+    imageurl VARCHAR(200),
+    sprite VARCHAR(200),
+    stats VARCHAR(100)
     )`;
 
   pool.query(createTable)

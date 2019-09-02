@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class PokemonImage extends Component {
   render() {
-    let { id, imageurl } = this.props;
+    let { id, imageurl, changeCurrentPokemon } = this.props;
     imageurl = imageurl.length ? imageurl : "https://cdn.bulbagarden.net/upload/thumb/a/a1/Substitute_artwork.png/200px-Substitute_artwork.png";
     return (
       <div className="card">
@@ -18,7 +18,7 @@ class PokemonImage extends Component {
           <a href="#" className="card-footer-item">
             <i className="fas fa-camera"></i>
           </a>
-          <a href="#" className="card-footer-item">
+          <a href="#" className="card-footer-item" onClick={() => changeCurrentPokemon(1)}>
             <i className="fas fa-caret-right"></i>
           </a>
         </footer>
