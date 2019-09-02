@@ -25,13 +25,13 @@ const controller = {
 const controller_params = {
   getByPokemon: (req, res) => {
     // Determine if we are searching by id or by name
-    const isNumber = (/\d/).test(req.params.pokemon);
-    const column = isNumber ? "id" : "name";
-    const operator = isNumber ? "=" : "ILIKE";
-    const bar = isNumber ? "" : "%";
+    let { pokemon } = req.params;
+    let isNumber = (/\d/).test(pokemon);
+    let column = isNumber ? "id" : "name";
+    pokemon = isNumber ? pokemon : pokemon.charAt(0).toUpperCase() + pokemon.slice(1);
 
     const selectText = `SELECT * FROM pokemon 
-    WHERE ${column} ${operator} '${req.params.pokemon}${bar}';`
+    WHERE ${column} = '${pokemon}';`
     console.log(selectText)
     pool.query(selectText)
       .then(data => res.status(202).send(data.rows))

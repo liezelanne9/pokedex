@@ -17,13 +17,14 @@ while (pokemonNumber < totalNumberOfPokemon + 1) {
   pokemonNumber++;
 }
 
-writeStream.write("'id', 'name', 'type1', 'type2', 'imageurl', 'sprite', 'stats' \n");
+writeStream.write(`"id", "name", "type1", "type2", "imageurl", "sprite", "stats" \n`);
 
 Promise.all(promises)
   .then(values => {
     for (let i = 0; i < values.length; i++) {
       let pokemon = values[i];
       let row = pokemonDataParser(pokemon, i);
+      console.log(row)
       writeStream.write(row + '\n')
     }
   })

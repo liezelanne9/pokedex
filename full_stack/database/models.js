@@ -29,9 +29,9 @@ const createTable = () => {
     `CREATE TABLE IF NOT EXISTS
   pokemon(
     id VARCHAR(4) PRIMARY KEY,
-    name VARCHAR(20) NOT NULL,
-    type1 VARCHAR(10) NOT NULL,
-    type2 VARCHAR(10),
+    name TEXT NOT NULL,
+    type1 TEXT NOT NULL,
+    type2 TEXT,
     imageurl VARCHAR(200),
     sprite VARCHAR(200),
     stats VARCHAR(100)

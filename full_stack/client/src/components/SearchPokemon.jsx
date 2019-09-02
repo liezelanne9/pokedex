@@ -19,16 +19,28 @@ class SearchPokemon extends Component {
 
   handleSearchButton() {
     const { fetchPokemonList } = this.props;
+    if (!(/\d/).test(this.state.pokemon)) {
+      alert('Please enter a numeric value for Number.');
+      return;
+    }
     axios
-      .post(`/api/${this.state.pokemon}`)
-      .then(() => fetchPokemonList(false))
+      .get(`/api/${this.state.pokemon}`)
+      .then(data => {
+        if (data.data.length) {
+          alert('That Pokemon is already registered')
+        } else {
+          axios
+            .post(`/api/${this.state.pokemon}`)
+            .then(() => fetchPokemonList(false))
+        }
+      })
   }
 
   render() {
     return (
       <div className="field has-addons">
         <div className="control">
-          <input className="input" type="text" placeholder="Name or No." onChange={e => this.handleInputChange(e)}/>
+          <input className="input" type="text" placeholder="Pokemon #" onChange={e => this.handleInputChange(e)} />
         </div>
         <div className="control">
           <a className="button is-info" onClick={this.handleSearchButton}>

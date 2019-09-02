@@ -13,7 +13,8 @@ const CurrentPokemon = (props) => {
       <div>
         <PokemonImage
           id={id}
-          imageurl={imageurl} />
+          imageurl={imageurl} 
+          changeCurrentPokemon={changeCurrentPokemon}/>
       </div>
       <div>
         <PokemonInfo
