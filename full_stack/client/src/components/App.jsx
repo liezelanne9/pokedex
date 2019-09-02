@@ -127,7 +127,7 @@ class App extends Component {
             <NewPokemon registerNewPokemon={this.registerNewPokemon} />
           </article>
           <article className="tile is-child notification is-info">
-            <SearchExisting />
+            <SearchExisting fetchPokemonList={this.fetchPokemonList}/>
           </article>
         </div>
 

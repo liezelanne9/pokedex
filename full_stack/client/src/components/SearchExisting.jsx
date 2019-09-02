@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SearchPokemon from './SearchPokemon';
 import SearchList from './SearchExisting-List';
 
-class RegisterExisting extends Component {
-  render() {
+const RegisterExisting = (props) => {
+  const { fetchPokemonList } = props;
     return (
       <div>
         <div className="box">
@@ -12,7 +12,7 @@ class RegisterExisting extends Component {
               <h2>Register Existing:</h2>
             </div>
             <div className="column">
-              <SearchPokemon />
+              <SearchPokemon fetchPokemonList={fetchPokemonList}/>
             </div>
           </div>
         </div>
@@ -21,7 +21,6 @@ class RegisterExisting extends Component {
         </div>
       </div>
     )
-  }
 }
 
 export default RegisterExisting;

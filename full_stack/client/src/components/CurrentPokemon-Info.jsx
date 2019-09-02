@@ -4,7 +4,7 @@ import StatsTable from './StatsTable';
 import typeColors from '../pokemonTypes';
 
 const PokemonInfo = (props) => {
-  const { id, name, type1, type2, stats, changeCurrentPokemon, unregisterPokemon } = props;
+  const { id, name, type1, type2, imageurl, sprite, stats, changeCurrentPokemon, unregisterPokemon } = props;
   console.log(typeColors)
   console.log(typeColors[type1])
   const type1Class = typeColors[type1];
@@ -16,7 +16,7 @@ const PokemonInfo = (props) => {
         <div className="media">
           <div className="media-left">
             <figure className="image is-48x48">
-              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Placeholder image" />
+              <img src={sprite} alt="Placeholder image" />
             </figure>
           </div>
           <div className="media-content">
