@@ -1,4 +1,6 @@
 const pool = require('../database/models');
+const pokemonDataParser = require('../pokemon_data/pokemonDataParser');
+const axios = require('axios');
 
 const controller = {
   get: (req, res) => {
@@ -6,7 +8,7 @@ const controller = {
       .then(data => res.status(200).send(data.rows))
       .catch(err => res.status(404).send(err))
   },
-  
+
   post: (req, res) => {
     let { id, name, type1, type2, imageurl } = req.body;
     console.log(id, name, type1, type2, imageurl)
@@ -43,6 +45,23 @@ const controller_params = {
     pool.query(deleteText)
       .then(data => res.status(202).send(data))
       .catch(err => res.status(404).send(err))
+  },
+  importFromPokeApi: (req, res) => {
+    let { pokemon } = req.params;
+    axios
+      .get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+      .then((pokemon) => {
+        let newPokemon = pokemonDataParser(pokemon);
+        const insertText = `INSERT INTO 
+        pokemon (id, name, type1, type2, imageurl, sprite, stats) 
+        VALUES (${newPokemon.replace(/"/g, "'")});`
+
+        console.log(insertText)
+        pool.query(insertText)
+          .then(data => res.status(201).send(data))
+          .catch(err => res.status(400).send(err))
+      })
+      .catch(err => console.log(err.response))
   }
 }
 
