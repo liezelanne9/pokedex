@@ -89,6 +89,7 @@ class App extends Component {
           axios
             .post('/api', pokemonObject)
             .then(() => {
+              console.log('posted')
               this.fetchPokemonList(false)
             })
             .catch(err => console.log(err.response))

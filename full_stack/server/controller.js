@@ -11,7 +11,6 @@ const controller = {
 
   post: (req, res) => {
     let { id, name, type1, type2, imageurl } = req.body;
-    console.log(id, name, type1, type2, imageurl)
     const insertText = `INSERT INTO 
     pokemon (id, name, type1, type2, imageurl) 
     VALUES ('${id}', '${name}', '${type1}', '${type2 ? type2 : ""}', '${imageurl ? imageurl : ""}'
