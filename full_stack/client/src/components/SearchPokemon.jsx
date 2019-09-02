@@ -28,7 +28,7 @@ class SearchPokemon extends Component {
     return (
       <div className="field has-addons">
         <div className="control">
-          <input className="input" type="text" placeholder="Pokemon Name or No." onChange={e => this.handleInputChange(e)}/>
+          <input className="input" type="text" placeholder="Name or No." onChange={e => this.handleInputChange(e)}/>
         </div>
         <div className="control">
           <a className="button is-info" onClick={this.handleSearchButton}>

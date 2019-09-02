@@ -5,8 +5,6 @@ import typeColors from '../pokemonTypes';
 
 const PokemonInfo = (props) => {
   const { id, name, type1, type2, imageurl, sprite, stats, changeCurrentPokemon, unregisterPokemon } = props;
-  console.log(typeColors)
-  console.log(typeColors[type1])
   const type1Class = typeColors[type1];
   const type2Class = type2.length > 1 ? typeColors[type2] : "";
 
