@@ -34,7 +34,7 @@ const createTable = () => {
     type2 VARCHAR(10),
     imageurl VARCHAR(200),
     sprite VARCHAR(200),
-    stats VARCHAR(90)
+    stats VARCHAR(100)
     )`;
 
   pool.query(createTable)

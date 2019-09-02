@@ -17,7 +17,7 @@ while (pokemonNumber < totalNumberOfPokemon + 1) {
   pokemonNumber++;
 }
 
-writeStream.write('id, name, type1, type2, imageurl, sprite, stats \n');
+writeStream.write("'id', 'name', 'type1', 'type2', 'imageurl', 'sprite', 'stats' \n");
 
 Promise.all(promises)
   .then(values => {
@@ -49,9 +49,10 @@ Promise.all(promises)
         let value = stat.base_stat;
         statObj[name] = value;
       })
+      statObj = JSON.stringify(statObj).replace(/"/g, "'");
       stats = statObj;
 
-      writeStream.write(`'${id}', '${name}', '${type1}', '${type2}', '${imageurl}', '${sprite}', '${JSON.stringify(stats)}'` + '\n')
+      writeStream.write(`"${id}", "${name}", "${type1}", "${type2}", "${imageurl}", "${sprite}", "${stats}"` + '\n')
     }
   })
   .catch(err => console.log(err))
