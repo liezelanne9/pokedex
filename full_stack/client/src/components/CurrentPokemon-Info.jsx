@@ -4,7 +4,7 @@ import StatsTable from './StatsTable';
 import typeColors from '../pokemonTypes';
 
 const PokemonInfo = (props) => {
-  const { id, name, type1, type2, changeCurrentPokemon, unregisterPokemon } = props;
+  const { id, name, type1, type2, stats, changeCurrentPokemon, unregisterPokemon } = props;
   const type1Class = typeColors[type1];
   const type2Class = type2.length > 1 ? typeColors[type2] : "";
 
@@ -30,7 +30,7 @@ const PokemonInfo = (props) => {
             </div>
           </div>
         </div>
-        <StatsTable />
+        <StatsTable stats={stats} />
         <footer className="card-footer">
           <a className="card-footer-item button is-primary" onClick={(e, id) => unregisterPokemon(e, props.id)}>
             Un-Register Pokémon

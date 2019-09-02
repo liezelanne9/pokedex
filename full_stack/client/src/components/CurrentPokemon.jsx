@@ -5,8 +5,8 @@ import PokemonInfo from './CurrentPokemon-Info';
 const CurrentPokemon = (props) => {
   const { currentPokemon, changeCurrentPokemon, unregisterPokemon } = props;
   let { id, name, type1, type2, imageurl, sprite, stats } = currentPokemon;
-  stats = stats.substring(2, stats.length - 1).split(',');
-  stats = console.log(stats)
+  stats = stats.substring(1, stats.length - 1).split(',');
+  // stats = console.log(stats)
 
   return (
     <div>
