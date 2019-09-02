@@ -19,14 +19,15 @@ const pokemonDataParser = (pokemon, i = null) => {
   let sprite = sprites.front_default;
 
   // Parse out stats array of nested objects into single stats object
-  let statObj = {};
+  let statsArr = [];
   stats = stats.forEach(stat => {
-    let name = stat.stat.name;
-    let value = stat.base_stat;
-    statObj[name] = value;
+    statsArr.push(stat.base_stat);
   })
-  statObj = JSON.stringify(statObj).replace(/"/g, "'");
-  stats = statObj;
+  // statObj = JSON.stringify(statObj);
+  // console.log(statObj);
+  // statObj = statObj.replace(/"/g, "'");
+  stats = JSON.stringify(statsArr);
+  // console.log(stats);
 
   return `"${id}", "${name}", "${type1}", "${type2}", "${imageurl}", "${sprite}", "${stats}"`;
 }
