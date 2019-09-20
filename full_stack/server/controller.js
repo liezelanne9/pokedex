@@ -18,10 +18,10 @@ const controller = {
           row.stats = row.stats.map(stat => parseInt(stat))
           return row;
         })
-        console.log(datum[0]);
-        return datum;
+        // console.log(datum[0]);
+        res.status(200).send(datum);
       })
-      .then(data => res.status(200).send(data.rows))
+      // .then(data => res.status(200).send(data.rows))
       .catch(err => res.status(404).send(err))
   },
 
