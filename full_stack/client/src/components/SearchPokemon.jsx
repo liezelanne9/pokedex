@@ -19,10 +19,10 @@ class SearchPokemon extends Component {
 
   handleSearchButton() {
     const { pokemonList, fetchPokemonList, changeCurrentPokemon } = this.props;
-    // if (!(/\d/).test(this.state.pokemon)) {
-    //   alert('Please enter a numeric value for Number.');
-    //   return;
-    // }
+    if ((/\W/).test(this.state.pokemon) || !this.state.pokemon.length) {
+      alert('Please enter a name or number of Pokémon.');
+      return;
+    }
     axios
       .get(`/api/${this.state.pokemon}`)
       .then(data => {
@@ -48,7 +48,7 @@ class SearchPokemon extends Component {
     return (
       <div className="field has-addons">
         <div className="control">
-          <input className="input" type="text" placeholder="Pokemon #" onChange={e => this.handleInputChange(e)} />
+          <input className="input" type="text" placeholder="name or #" onChange={e => this.handleInputChange(e)} value={this.state.pokemon}/>
         </div>
         <div className="control">
           <a className="button is-info" onClick={this.handleSearchButton}>
