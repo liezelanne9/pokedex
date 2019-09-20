@@ -14,7 +14,7 @@ const StatsTable = (props) => {
         <tbody>
           <tr>
             <th>Speed</th>
-            <td>{stats[0].substring(1)}</td>
+            <td>{stats[0]}</td>
           </tr>
           <tr>
             <th>Sp. Defense</th>
