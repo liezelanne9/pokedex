@@ -69,6 +69,7 @@ const controller_params = {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
       .then((pokemon) => {
+        let { name } = pokemon.data;
         let newPokemon = pokemonDataParser(pokemon);
         const insertText = `INSERT INTO 
         pokemon (id, name, type1, type2, imageurl, sprite, stats) 
@@ -76,10 +77,10 @@ const controller_params = {
 
         console.log(insertText)
         pool.query(insertText)
-          .then(data => res.status(201).send(data))
+          .then(() => res.status(201).send(name.charAt(0).toUpperCase() + name.slice(1)))
           .catch(err => res.status(400).send(err))
       })
-      .catch(err => console.log(err.response))
+      .catch(err => res.status(404).send(err.response.status))
   }
 }
 

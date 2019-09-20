@@ -18,20 +18,28 @@ class SearchPokemon extends Component {
   }
 
   handleSearchButton() {
-    const { fetchPokemonList } = this.props;
-    if (!(/\d/).test(this.state.pokemon)) {
-      alert('Please enter a numeric value for Number.');
-      return;
-    }
+    const { pokemonList, fetchPokemonList, changeCurrentPokemon } = this.props;
+    // if (!(/\d/).test(this.state.pokemon)) {
+    //   alert('Please enter a numeric value for Number.');
+    //   return;
+    // }
     axios
       .get(`/api/${this.state.pokemon}`)
       .then(data => {
         if (data.data.length) {
-          alert('That Pokemon is already registered')
+          changeCurrentPokemon(pokemonList.findIndex(pokemon => pokemon.id == data.data[0].id))
+          alert(`${data.data[0].name} is already registered to the Pokedéx.`);
         } else {
           axios
             .post(`/api/${this.state.pokemon}`)
-            .then(() => fetchPokemonList(false))
+            .then((data) => {
+              console.log(data.data)
+              alert(`${data.data}'s data will be added to the Pokedéx. Be sure to add a picture!`)
+              fetchPokemonList(false);
+            })
+            .catch(() => {
+              alert(`Error trying to register '${this.state.pokemon}'. Do you mean to register a never-before-seen Pokémon instead?`)
+            })
         }
       })
   }

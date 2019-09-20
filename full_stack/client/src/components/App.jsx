@@ -58,6 +58,8 @@ class App extends Component {
       currentIndex = this.state.pokemonList.length - 1;
     } else if (direction === 1 && currentIndex === this.state.pokemonList.length - 1) {
       currentIndex = 0;
+    } else if (direction > 1) {
+      currentIndex = direction;
     } else {
       currentIndex = this.state.currentIndex + direction;
     }
@@ -130,7 +132,10 @@ class App extends Component {
             <NewPokemon registerNewPokemon={this.registerNewPokemon} />
           </article>
           <article className="tile is-child notification is-info">
-            <SearchExisting pokemonList={pokemonList} fetchPokemonList={this.fetchPokemonList} />
+            <SearchExisting
+              pokemonList={pokemonList}
+              fetchPokemonList={this.fetchPokemonList}
+              changeCurrentPokemon={this.changeCurrentPokemon} />
           </article>
         </div>
 
