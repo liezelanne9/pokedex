@@ -14,10 +14,18 @@ class PokemonImage extends Component {
           </figure>
         </div>
         <footer className="card-footer">
-          <a href="#" className="card-footer-item">
+          <a href="#" className="card-footer-item"
+            onClick={(e) => {
+              e.preventDefault();
+              alert("Picture upload coming soon!");
+            }}>
             <i className="fas fa-camera"></i>
           </a>
-          <a href="#" className="card-footer-item" onClick={() => changeCurrentPokemon(1)}>
+          <a href="#" className="card-footer-item"
+            onClick={(e) => {
+              e.preventDefault();
+              alert("Picture toggle/sound byte (haven't decided yet...) coming soon!");
+            }}>
             <i className="fas fa-caret-right"></i>
           </a>
         </footer>
