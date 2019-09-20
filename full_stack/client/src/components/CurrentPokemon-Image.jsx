@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class PokemonImage extends Component {
   render() {
     const { id, imageurl, changeCurrentPokemon } = this.props;
-    // imageurl = imageurl.length ? imageurl : "https://cdn.bulbagarden.net/upload/thumb/a/a1/Substitute_artwork.png/200px-Substitute_artwork.png";
     return (
       <div className="card">
         <div className="card-image">

@@ -5,7 +5,6 @@ import typeColors from '../pokemonTypes';
 
 const PokemonInfo = (props) => {
   const { id, name, type1, type2, imageurl, sprite, stats, changeCurrentPokemon, unregisterPokemon } = props;
-  // sprite = sprite ? sprite : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png";
   let type1Class = typeColors[type1];
   let type2Class = type2.length > 1 ? typeColors[type2] : "";
 
