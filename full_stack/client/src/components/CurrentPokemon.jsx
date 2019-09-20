@@ -3,7 +3,7 @@ import PokemonImage from './CurrentPokemon-Image';
 import PokemonInfo from './CurrentPokemon-Info';
 
 const CurrentPokemon = (props) => {
-  const { currentPokemon, changeCurrentPokemon, unregisterPokemon } = props;
+  const { currentPokemon, changeCurrentPokemon, unregisterPokemon, lastIndex } = props;
   const { id, name, type1, type2, imageurl, sprite, stats } = currentPokemon;
   
   return (
@@ -24,6 +24,7 @@ const CurrentPokemon = (props) => {
           stats={stats}
           changeCurrentPokemon={changeCurrentPokemon}
           unregisterPokemon={unregisterPokemon}
+          lastIndex={lastIndex}
         />
       </div>
     </div>

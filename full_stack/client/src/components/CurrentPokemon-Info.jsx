@@ -4,7 +4,7 @@ import StatsTable from './StatsTable';
 import typeColors from '../pokemonTypes';
 
 const PokemonInfo = (props) => {
-  const { id, name, type1, type2, imageurl, sprite, stats, changeCurrentPokemon, unregisterPokemon } = props;
+  const { id, name, type1, type2, imageurl, sprite, stats, changeCurrentPokemon, unregisterPokemon, lastIndex } = props;
   let type1Class = typeColors[type1];
   let type2Class = type2.length > 1 ? typeColors[type2] : "";
 
@@ -37,7 +37,7 @@ const PokemonInfo = (props) => {
           </a>
         </footer>
         <div className="card-footer-item">
-          <PrevNext changeCurrentPokemon={changeCurrentPokemon} />
+          <PrevNext changeCurrentPokemon={changeCurrentPokemon} lastIndex={lastIndex}/>
         </div>
       </div>
     </div>

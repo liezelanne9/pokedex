@@ -58,7 +58,7 @@ class App extends Component {
       currentIndex = this.state.pokemonList.length - 1;
     } else if (direction === 1 && currentIndex === this.state.pokemonList.length - 1) {
       currentIndex = 0;
-    } else if (direction > 1) {
+    } else if (direction === 0 || direction > 1) {
       currentIndex = direction;
     } else {
       currentIndex = this.state.currentIndex + direction;
@@ -123,6 +123,7 @@ class App extends Component {
               currentPokemon={currentPokemon}
               changeCurrentPokemon={this.changeCurrentPokemon}
               unregisterPokemon={this.unregisterPokemon}
+              lastIndex={pokemonList.length - 1}
             />
           </article>
         </div>
