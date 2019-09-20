@@ -5,6 +5,22 @@ const axios = require('axios');
 const controller = {
   get: (req, res) => {
     pool.query('SELECT * FROM pokemon;')
+      .then(data => {
+        let datum = data.rows.map(row => {
+          row.id = parseInt(row.id);
+          row.name = row.name.trim();
+          row.type1 = row.type1.trim();
+          row.type2 = row.type2.trim();
+          row.imageurl = row.imageurl.length ? row.imageurl.trim() : "https://cdn.bulbagarden.net/upload/thumb/a/a1/Substitute_artwork.png/200px-Substitute_artwork.png";
+          row.sprite = row.sprite ? row.sprite.trim() : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png";
+          row.stats = row.stats ? row.stats.trim() : "";
+          row.stats = row.stats.length > 1 ? row.stats.substring(1, row.stats.length - 1).split(',') : ["10", "10", "10", "10", "10", "10"];
+          row.stats = row.stats.map(stat => parseInt(stat))
+          return row;
+        })
+        console.log(datum[0]);
+        return datum;
+      })
       .then(data => res.status(200).send(data.rows))
       .catch(err => res.status(404).send(err))
   },
