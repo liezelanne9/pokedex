@@ -20,11 +20,13 @@ class App extends Component {
   componentDidMount() {
     this.fetchPokemonList();
     window.addEventListener('keydown', (e) => {
-      if (e.key === "ArrowLeft") {
-        this.changeCurrentPokemon(-1);
-      }
-      if (e.key === "ArrowRight") {
-        this.changeCurrentPokemon(1);
+      if (e.target.type !== "text") {
+        if (e.key === "ArrowLeft") {
+          this.changeCurrentPokemon(-1);
+        }
+        if (e.key === "ArrowRight") {
+          this.changeCurrentPokemon(1);
+        }
       }
     });
   }
@@ -128,7 +130,7 @@ class App extends Component {
             <NewPokemon registerNewPokemon={this.registerNewPokemon} />
           </article>
           <article className="tile is-child notification is-info">
-            <SearchExisting pokemonList={pokemonList} fetchPokemonList={this.fetchPokemonList}/>
+            <SearchExisting pokemonList={pokemonList} fetchPokemonList={this.fetchPokemonList} />
           </article>
         </div>
 
