@@ -1,7 +1,8 @@
+require('dotenv').config();
+
 const path = require('path');
 const { Pool } = require('pg');
-const connectionString = 'postgresql://localhost:5432/poketest';
-// const connectionString = 'postgresql://postgres:password@3.84.11.62:5432/poketest';
+const connectionString = process.env.DB_CONN;
 
 const pool = new Pool({
   connectionString: connectionString

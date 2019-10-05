@@ -14,8 +14,8 @@ const controller = {
           row.name = row.name.trim();
           row.type1 = row.type1.trim();
           row.type2 = row.type2.trim();
-          row.imageurl = row.imageurl.length ? row.imageurl.trim() : "https://cdn.bulbagarden.net/upload/thumb/a/a1/Substitute_artwork.png/200px-Substitute_artwork.png";
           row.sprite = row.sprite ? row.sprite.trim() : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png";
+          row.imageurl = row.imageurl.length ? row.imageurl.trim() : row.sprite;
 
           // Stats reformat from '[45,65,65,49,49,45]' => [45, 65, 65, 49, 49, 45]
           row.stats = row.stats ? row.stats.trim() : "";
