@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PokemonImage from './CurrentPokemon-Image';
 import PokemonInfo from './CurrentPokemon-Info';
 

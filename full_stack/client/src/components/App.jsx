@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchPokemon, unregisterPokemon, registerNewPokemon } from '../../../redux/actions';
 import CurrentPokemon from './CurrentPokemon';
 import SearchExisting from './SearchExisting';
 import NewPokemon from './NewPokemon';
@@ -8,17 +10,17 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pokemonList: [],
+      // pokemonList: [],
       currentIndex: 0
     }
-    this.fetchPokemonList = this.fetchPokemonList.bind(this);
+    // this.fetchPokemon = this.fetchPokemon.bind(this);
     this.changeCurrentPokemon = this.changeCurrentPokemon.bind(this);
     this.unregisterPokemon = this.unregisterPokemon.bind(this);
     this.registerNewPokemon = this.registerNewPokemon.bind(this);
   }
 
   componentDidMount() {
-    this.fetchPokemonList();
+    this.props.fetchPokemon();
     window.addEventListener('keydown', (e) => {
       if (e.target.type !== "text") {
         if (e.key === "ArrowLeft") {
@@ -31,7 +33,7 @@ class App extends Component {
     });
   }
 
-  fetchPokemonList(init = true) {
+  fetchPokemon(init = true) {
     axios
       .get('/api')
       .then(pokemon => {
@@ -44,7 +46,7 @@ class App extends Component {
             })
           } else {
             this.setState({
-              currentIndex: this.state.pokemonList.length - 1
+              currentIndex: this.props.pokemonList.length - 1
             })
           }
         })
@@ -55,8 +57,8 @@ class App extends Component {
   changeCurrentPokemon(direction) {
     let { currentIndex } = this.state;
     if (direction === -1 && currentIndex === 0) {
-      currentIndex = this.state.pokemonList.length - 1;
-    } else if (direction === 1 && currentIndex === this.state.pokemonList.length - 1) {
+      currentIndex = this.props.pokemonList.length - 1;
+    } else if (direction === 1 && currentIndex === this.props.pokemonList.length - 1) {
       currentIndex = 0;
     } else if (direction === 0 || direction > 1) {
       currentIndex = direction;
@@ -75,7 +77,7 @@ class App extends Component {
       axios
         .delete(`/api/${id}`)
         .then(() => {
-          this.fetchPokemonList(false);
+          this.fetchPokemon(false);
         })
         .catch(err => console.log(err.response))
     }
@@ -94,7 +96,7 @@ class App extends Component {
             .post('/api', pokemonObject)
             .then(() => {
               console.log('posted')
-              this.fetchPokemonList(false)
+              this.fetchPokemon(false)
             })
             .catch(err => console.log(err.response))
         }
@@ -111,8 +113,9 @@ class App extends Component {
       "sprite": "",
       "stats": ""
     };
-    const { pokemonList, currentIndex } = this.state;
-    const currentPokemon = pokemonList[currentIndex] ? pokemonList[currentIndex] : placeholder;
+    const { currentIndex } = this.state;
+    const { pokemonList } = this.props;
+    const currentPokemon = (pokemonList && pokemonList[currentIndex]) ? pokemonList[currentIndex] : placeholder;
 
     return (
       <div className="tile is-ancestor">
@@ -123,7 +126,7 @@ class App extends Component {
               currentPokemon={currentPokemon}
               changeCurrentPokemon={this.changeCurrentPokemon}
               unregisterPokemon={this.unregisterPokemon}
-              lastIndex={pokemonList.length - 1}
+              lastIndex={pokemonList ? pokemonList.length - 1 : 0}
             />
           </article>
         </div>
@@ -134,8 +137,8 @@ class App extends Component {
           </article>
           <article className="tile is-child notification is-info">
             <SearchExisting
-              pokemonList={pokemonList}
-              fetchPokemonList={this.fetchPokemonList}
+              // pokemonList={pokemonList}
+              // fetchPokemon={this.props.fetchPokemon}
               changeCurrentPokemon={this.changeCurrentPokemon} />
           </article>
         </div>
@@ -145,4 +148,18 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    pokemonList: state.pokemonList,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchPokemon: () => dispatch(fetchPokemon()),
+    unregisterPokemon: (pokemonId) => dispatch(unregisterPokemon({ pokemonId })),
+    registerNewPokemon: (pokemonObject) => dispatch(registerNewPokemon({ pokemonObject })),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -13,7 +13,7 @@ class PokemonImage extends Component {
             />
           </figure>
         </div>
-        <footer className="card-footer">
+        <div className="card-footer">
           <a href="#" className="card-footer-item"
             onClick={(e) => {
               e.preventDefault();
@@ -28,7 +28,7 @@ class PokemonImage extends Component {
             }}>
             <i className="fas fa-caret-right"></i>
           </a>
-        </footer>
+        </div>
       </div>
     )
   }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import ListItem from './SearchExisting-ListItem';
 
 const SearchList = (props) => {
@@ -6,10 +7,16 @@ const SearchList = (props) => {
     return (
       <div>
         <h4 className="title is-4">In your area:</h4>
-        {nearbyPokemon.map((pokemon, i) => <ListItem key={i} pokemon={pokemonList[pokemon]}/>)}
+        {pokemonList && nearbyPokemon.map((pokemon, i) => <ListItem key={i} pokemon={pokemonList[pokemon]}/>)}
       </div>
 
     )
 }
 
-export default SearchList;
+const mapStateToProps = (state) => {
+  return {
+    pokemonList: state.pokemonList,
+  }
+}
+
+export default connect(mapStateToProps, null)(SearchList);

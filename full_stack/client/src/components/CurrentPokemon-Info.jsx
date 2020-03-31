@@ -32,7 +32,7 @@ const PokemonInfo = (props) => {
         </div>
         <StatsTable stats={stats} />
         <footer className="card-footer">
-          <a className="card-footer-item button is-primary" onClick={(e, id) => unregisterPokemon(e, props.id)}>
+          <a className="card-footer-item button is-primary" onClick={(e) => unregisterPokemon(e, props.id)}>
             Un-Register Pokémon
           </a>
         </footer>

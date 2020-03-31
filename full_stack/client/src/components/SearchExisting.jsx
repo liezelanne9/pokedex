@@ -5,8 +5,10 @@ import SearchList from './SearchExisting-List';
 const RegisterExisting = (props) => {
   const { pokemonList, fetchPokemonList, changeCurrentPokemon } = props;
   let randomPokemonIds = [];
-  for (let i = 0; i < 3; i++) {
-    randomPokemonIds.push(Math.floor(Math.random() * Math.floor(pokemonList.length)))
+  if (pokemonList) {
+    for (let i = 0; i < 3; i++) {
+      randomPokemonIds.push(Math.floor(Math.random() * Math.floor(pokemonList.length)))
+    }
   }
 
   return (
@@ -18,14 +20,14 @@ const RegisterExisting = (props) => {
           </div>
           <div className="column">
             <SearchPokemon
-              pokemonList={pokemonList}
-              fetchPokemonList={fetchPokemonList}
+              // pokemonList={pokemonList}
+              // fetchPokemonList={fetchPokemonList}
               changeCurrentPokemon={changeCurrentPokemon} />
           </div>
         </div>
       </div>
       <div className="box">
-        <SearchList pokemonList={pokemonList} nearbyPokemon={randomPokemonIds} />
+        <SearchList nearbyPokemon={randomPokemonIds} />
       </div>
     </div>
   )
